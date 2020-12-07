@@ -4,15 +4,15 @@ import { Logger } from '@nestjs/common';
 
 // -------------------------- Local  ----------------------------
 
-import { Products } from '../models/';
+import { User } from '../models/';
 
 // ----------------------------------------------------------------
 
 // @EntityRepository(User) Repository<ClientIntegrations>
-export class ProductsRepository {
+export class UserRepository {
 	// ---------------------- Logger --------------------------------
 
-	private logger = new Logger(ProductsRepository.name);
+	private logger = new Logger(UserRepository.name);
 
 	// -------------------------------------------------
 

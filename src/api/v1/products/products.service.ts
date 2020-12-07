@@ -1,4 +1,24 @@
-import { Injectable } from '@nestjs/common';
+// ------------------------ Packages -------------------------------
+
+import { Injectable, Logger } from '@nestjs/common';
+
+// ------------------------ Local ----------------------------------
+
+// -----------------------------------------------------------------
 
 @Injectable()
-export class ProductsService {}
+export class ProductsService {
+	// -------------------- Logger --------------------------
+
+	private logger = new Logger(ProductsService.name);
+
+	// -------------------- Ctor ----------------------------
+
+	constructor() {}
+
+	// -------------------- Functionality -------------------
+
+	public test() {
+		return { test: true };
+	}
+}

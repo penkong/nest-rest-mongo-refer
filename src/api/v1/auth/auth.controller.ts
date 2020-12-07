@@ -12,6 +12,7 @@ import {
 // ------------------------ Local ----------------------------------
 
 import { AuthService } from './auth.service';
+import { AuthResponseDto, AuthSignOTPDto, AuthSignUpDto } from './dto-enum';
 
 // -----------------------------------------------------------------
 @Controller('auth')
@@ -24,25 +25,36 @@ export class AuthController {
 
 	constructor(private authService: AuthService) {}
 
-	// -------- consume service functionality ------------------------
+	// -------- consume service functionality -------------
 
 	@Get('/test')
 	public test() {}
 
-	// ------------------------------
+	// ---
 
-	// for user sign in in application with user, pass ,and app type
-	@Post('/signin')
-	signIn(
-		@Body(ValidationPipe) authCredentialsDto: AuthCredentialsDto
+	@Post('/signup')
+	public async signUp(
+		@Body(ValidationPipe) authSignupDto: AuthSignUpDto
 	): Promise<AuthResponseDto> {
-		return this.authService.signIn(authCredentialsDto);
+		return this.authService.signUp(authSignupDto);
 	}
 
-	// for user sign up in application with user, pass ,and app type
-	@Post('/signup')
-	signUp(@Body(ValidationPipe) authPhoneDto: AuthPhoneDto): Promise<void> {
-		return this.authService.signInOTP(authPhoneDto);
+	// ---
+
+	@Post('/signin')
+	public async signIn(
+		@Body(ValidationPipe) authSigninDto: AuthSignUpDto
+	): Promise<AuthResponseDto> {
+		return await this.authService.signIn(authSigninDto);
+	}
+
+	// ---
+
+	@Post('/otp')
+	public async phoneOtp(
+		@Body(ValidationPipe) authSignOTPDto: AuthSignOTPDto
+	): Promise<AuthResponseDto> {
+		return await this.authService.phoneOtp(authSignOTPDto);
 	}
 }
 

@@ -11,7 +11,7 @@ import {
 
 // ------------------------ Local ----------------------------------
 
-import { AuthService } from './products.service';
+import { ProductsService } from './products.service';
 
 // -----------------------------------------------------------------
 
@@ -23,7 +23,7 @@ export class ProductsController {
 
 	// -------------------- Ctor --------------------------
 
-	constructor(private authService: AuthService) {}
+	constructor(private productService: ProductsService) {}
 
 	// -------- consume service functionality ------------------------
 
