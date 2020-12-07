@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://www.penbeh.com/" target="blank"><h1>Creator : Mazdak</h1></a>
+  <a href="https://www.penbeh.com/" target="blank"><h1>created by Mazdak Nazemi</h1></a>
 </p>
 <p align="center">
   nazemi.works@gmail.com
@@ -19,7 +19,7 @@ npm install
 
 ##### for spa with cra or vite or vue-cli :
 
-come soon , already written , must add it to project for refer.
+coming soon , already written , must add it to project for refer.
 be patience.
 
 ## and also offer you :
