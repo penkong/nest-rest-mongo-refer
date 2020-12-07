@@ -5,14 +5,14 @@ import mongoose from 'mongoose';
 // --------------------------------------------------------
 
 // input
-export interface IUserAttrs {
+export interface IUserInfo {
 	email: string;
 	password: string;
 }
 
-// add to this
+// add to this(model)
 export interface IUserModel extends mongoose.Model<IUserDoc> {
-	build(attrs: IUserAttrs): IUserDoc;
+	build(attrs: IUserInfo): IUserDoc;
 }
 
 // output - return

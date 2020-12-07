@@ -1,15 +1,18 @@
 // ------------------------ Packages -------------------------------
 
-import { Module } from '@nestjs/common';
+import { Module } from '@nestjs/common'
 
 // ------------------------ Local ----------------------------------
 
-import { AuthController } from './auth.controller';
-import { AuthService } from './auth.service';
+import { DatabaseModule } from '../../../Database/'
+import { AuthController } from './auth.controller'
+import { AuthService } from './auth.service'
+import { authProviders } from './models/user/user.provider'
 
 // -----------------------------------------------------------------
 @Module({
+	imports: [DatabaseModule],
 	controllers: [AuthController],
-	providers: [AuthService]
+	providers: [AuthService, ...authProviders]
 })
 export class AuthModule {}

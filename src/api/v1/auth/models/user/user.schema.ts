@@ -1,15 +1,15 @@
 // ---------------------- Packages ------------------------
 
-import mongoose from 'mongoose';
+// have to import like this at this version (nest throw error if not)
+import * as mongoose from 'mongoose'
 
 // ---------------------- Locals ------------------------
 
-import { Password } from '../../password.service';
-import { IUserAttrs, IUserDoc, IUserModel } from './user.interface';
+import { Password } from '../../password.service'
 
 // ---------------------- Schema Define ----------------------------------
 
-const userSchema = new mongoose.Schema(
+export const UserSchema = new mongoose.Schema(
 	{
 		email: {
 			type: String,
@@ -23,35 +23,44 @@ const userSchema = new mongoose.Schema(
 	{
 		// view level logic
 		toJSON: {
-			transform(doc, ret) {
-				ret.id = ret._id;
-				delete ret._id;
-				delete ret.password;
-				delete ret.__v;
+			transform(doc, returnObject) {
+				returnObject.id = returnObject._id
+				delete returnObject._id
+				delete returnObject.password
+				delete returnObject.__v
 			}
 		}
 	}
-);
+)
 
-// -------------------------- Model Logic ------------------------------
+// -------------------------- Plugin ------------------------------
 
-userSchema.pre('save', async function (done) {
+// optimistic data versioning : for handling Concurrency challenges
+
+// UserSchema.set('versionKey', 'version')
+// UserSchema.plugin(updateIfCurrentPlugin)
+
+// -------------------------- Middlewares ------------------------------
+
+UserSchema.pre('save', async function (done) {
 	// when this work , on pass change not email change or what ever
 	// also pass creation consider modification
 	if (this.isModified('password')) {
-		const hashed = await Password.toHash(this.get('password'));
-		this.set('password', hashed);
+		const hashed = await Password.toHash(this.get('password'))
+		this.set('password', hashed)
 	}
 	// @ts-ignore
-	done();
-});
+	done()
+})
 
-userSchema.statics.build = (attrs: IUserAttrs) => new User(attrs);
+// -------------------------- Schema Logic ------------------------------
 
-const User = mongoose.model<IUserDoc, IUserModel>('User', userSchema);
+// UserSchema.methods.doSthOnSchema = async function () {
+// 	 this == the doc we just call method on it .
+// }
 
-// --------------------------------------------------------
+// -------------------------- Model Logic ------------------------------
 
-User.build({ email: 'test@test.com', password: '12345678' });
+// UserSchema.statics.doSthOnModelItSelf = () => {}
 
-export { User };
+// ---------------------------------------------------------------------

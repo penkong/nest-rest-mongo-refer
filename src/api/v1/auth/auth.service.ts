@@ -1,12 +1,14 @@
 // ------------------------ Packages -------------------------------
 
-import { Injectable, Logger } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config/dist/config.service';
+import { Inject, Injectable, Logger } from '@nestjs/common'
+import { Model } from 'mongoose'
+import { ConfigService } from '@nestjs/config/dist/config.service'
 
 // ------------------------ Local ----------------------------------
 
-import { AuthResponseDto, AuthSignOTPDto, AuthSignUpDto } from './dto';
-import { UserRepository } from './repositories';
+import { AuthResponseDto, AuthSignOTPDto, AuthSignUpDto } from './dto'
+import { USER_MODEL } from '../../../constants'
+import { IUserDoc } from './models'
 
 // -----------------------------------------------------------------
 
@@ -14,16 +16,20 @@ import { UserRepository } from './repositories';
 export class AuthService {
 	// -------------------- Logger --------------------------
 
-	private logger = new Logger(AuthService.name);
+	private logger = new Logger(AuthService.name)
 
 	// -------------------- Ctor ----------------------------
 
-	constructor() {} // private userRepository: UserRepository // private configService: ConfigService
+	constructor(
+		@Inject(USER_MODEL)
+		private userModel: Model<IUserDoc>,
+		private configService: ConfigService
+	) {}
 
 	// -------------------- Functionality -------------------
 
 	public test() {
-		return { test: true };
+		return { test: true }
 	}
 
 	// ---
@@ -32,7 +38,9 @@ export class AuthService {
 	public async signUp(
 		authSignupDto: AuthSignUpDto
 	): Promise<AuthResponseDto | any> {
-		return { sign: 'signup' };
+		const user = new this.userModel(authSignupDto)
+		user.save()
+		return { sign: 'signup' }
 	}
 
 	// ---
@@ -42,7 +50,7 @@ export class AuthService {
 		authSigninDto: AuthSignUpDto
 	): Promise<AuthResponseDto | any> {
 		// const url = this.configService.get<string>('urls');
-		return { sign: 'signin' };
+		return { sign: 'signin' }
 	}
 
 	// ---
@@ -51,7 +59,7 @@ export class AuthService {
 	public async phoneOtp(
 		authSignOTPDto: AuthSignOTPDto
 	): Promise<AuthResponseDto | any> {
-		return { sign: 'otp' };
+		return { sign: 'otp' }
 	}
 }
 
