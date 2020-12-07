@@ -4,7 +4,7 @@ import { Logger } from '@nestjs/common';
 
 // -------------------------- Local  ----------------------------
 
-import { User } from '../models/';
+import { User } from '../models';
 
 // ----------------------------------------------------------------
 

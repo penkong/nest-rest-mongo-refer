@@ -12,7 +12,7 @@ import {
 // ------------------------ Local ----------------------------------
 
 import { AuthService } from './auth.service';
-import { AuthResponseDto, AuthSignOTPDto, AuthSignUpDto } from './dto-enum';
+import { AuthResponseDto, AuthSignOTPDto, AuthSignUpDto } from './dto';
 
 // -----------------------------------------------------------------
 @Controller('auth')

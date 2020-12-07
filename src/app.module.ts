@@ -18,11 +18,11 @@ import configuration from '../config/configuration';
 @Module({
 	imports: [
 		ConfigModule.forRoot({ load: [configuration], isGlobal: true }),
-		MongooseModule.forRoot(process.env.MONGO_URI, {
-			useNewUrlParser: true,
-			useUnifiedTopology: true,
-			useCreateIndex: true
-		}),
+		// MongooseModule.forRoot(process.env.MONGO_URI, {
+		// 	useNewUrlParser: true,
+		// 	useUnifiedTopology: true,
+		// 	useCreateIndex: true
+		// }),
 		AuthModule,
 		ProductsModule
 	],

@@ -5,7 +5,7 @@ import { ConfigService } from '@nestjs/config/dist/config.service';
 
 // ------------------------ Local ----------------------------------
 
-import { AuthResponseDto, AuthSignOTPDto, AuthSignUpDto } from './dto-enum';
+import { AuthResponseDto, AuthSignOTPDto, AuthSignUpDto } from './dto';
 import { UserRepository } from './repositories';
 
 // -----------------------------------------------------------------
@@ -18,9 +18,7 @@ export class AuthService {
 
 	// -------------------- Ctor ----------------------------
 
-	constructor() // private configService: ConfigService
-	// private userRepository: UserRepository
-	{}
+	constructor() {} // private userRepository: UserRepository // private configService: ConfigService
 
 	// -------------------- Functionality -------------------
 
