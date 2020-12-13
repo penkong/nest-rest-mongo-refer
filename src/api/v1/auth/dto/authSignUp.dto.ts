@@ -1,16 +1,24 @@
 // ------------------------- Packages ------------------------------
 
-import { IsEmail, IsString, Max, Min } from 'class-validator';
+import { IsEmail, IsOptional, IsString, Length } from 'class-validator'
 
 // ------------------------  ----------------------------------
 
 export class AuthSignUpDto {
 	@IsString()
 	@IsEmail()
-	email: string;
+	email: string
 
 	@IsString()
-	@Max(20)
-	@Min(6)
-	password: string;
+	@Length(6, 20)
+	password: string
+
+	@IsString()
+	@IsOptional()
+	@Length(3, 32)
+	username: string
+
+	@IsString()
+	@IsOptional()
+	avatar: Buffer
 }

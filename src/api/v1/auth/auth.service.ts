@@ -40,7 +40,7 @@ export class AuthService {
 	): Promise<AuthResponseDto | any> {
 		const user = new this.userModel(authSignupDto)
 		user.save()
-		return { sign: 'signup' }
+		return user
 	}
 
 	// ---

@@ -12,7 +12,8 @@ const scryptAsync = promisify(scrypt);
 
 @Injectable()
 export class Password {
-	//
+	// --- 
+	
 	static async toHash(password: string) {
 		const salt = randomBytes(8).toString('hex');
 
@@ -20,6 +21,8 @@ export class Password {
 
 		return `${buf.toString('hex')}.${salt}`;
 	}
+
+	// --- 
 
 	static async compare(storedPassword: string, suppliedPassword: string) {
 		const [hashedPassword, salt] = storedPassword.split('.');

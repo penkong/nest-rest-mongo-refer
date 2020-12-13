@@ -15,7 +15,8 @@ import { AuthService } from './auth.service';
 import { AuthResponseDto, AuthSignOTPDto, AuthSignUpDto } from './dto';
 
 // -----------------------------------------------------------------
-@Controller('auth')
+
+@Controller('/api/v1/auth')
 export class AuthController {
 	// -------------------- Logger --------------------------
 
@@ -28,7 +29,9 @@ export class AuthController {
 	// -------- consume service functionality -------------
 
 	@Get('/test')
-	public test() {}
+	public test() {
+		return { work: 'ok'}
+	}
 
 	// ---
 
@@ -40,6 +43,7 @@ export class AuthController {
 	}
 
 	// ---
+	
 
 	@Post('/signin')
 	public async signIn(
